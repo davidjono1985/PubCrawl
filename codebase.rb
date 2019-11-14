@@ -9,8 +9,8 @@
 class Hero
     
     @@initial_health = 100
-    @@initial_bladder = rand(1..20)
-    @@initial_belly = rand(1..20)
+    @@initial_bladder = rand(10..40)
+    @@initial_belly = rand(10..40)
 
     # @@level_up = 1
     # @@experience_up = 30
@@ -43,20 +43,38 @@ class Hero
 
     end
 
+    def display_stats()
+        puts "#{@name.upcase}'S STATS:"
+        puts "Health: #{@health}"
+        puts "Cash: $#{@cash}"
+        puts "Swagger&Clout: #{@swagger_clout}"
+        puts "Sure-Footedness: #{@sure_footedness}"
+        puts "Bladder Level: #{@bladder}"
+        puts "Belly Level: #{@belly}"
+    end 
+
+
 end
 
-kev = Hero.new("Kev","150","100","100")
-# douggie 
-# jimbo
-# bazza
+kev = Hero.new("Kev","150","90","90")
+douggie = Hero.new("Douggie","220","70","80") 
+jimbo = Hero.new("Jimbo","270","100","60")
+bazza = Hero.new("Bazza","120","50","50")
 
-puts "#{kev.name.upcase}'S STATS:"
-puts "Health: #{kev.health}"
-puts "Cash: $#{kev.cash}"
-puts "Swagger&Clout: #{kev.swagger_clout}"
-puts "Sure-Footedness: #{kev.sure_footedness}"
-puts "Bladder Level: #{kev.bladder}"
-puts "Belly Level: #{kev.belly}"
+kev.display_stats
+douggie.display_stats
+jimbo.display_stats
+bazza.display_stats
+
+
+
+# puts "#{kev.name.upcase}'S STATS:"
+# puts "Health: #{kev.health}"
+# puts "Cash: $#{kev.cash}"
+# puts "Swagger&Clout: #{kev.swagger_clout}"
+# puts "Sure-Footedness: #{kev.sure_footedness}"
+# puts "Bladder Level: #{kev.bladder}"
+# puts "Belly Level: #{kev.belly}"
 
 
 
