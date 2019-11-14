@@ -1,3 +1,4 @@
+require 'colorize'
 
 class Hero
         
@@ -32,7 +33,7 @@ class Hero
     end
 
     def display_stats()
-        puts "#{@name.upcase}'S STATS:"
+        puts "#{@name.upcase}'S STATS:".colorize(:red)
         puts "Health: #{@health}"
         puts "Cash: $#{@cash}"
         puts "Swagger&Clout: #{@swagger_clout}"
