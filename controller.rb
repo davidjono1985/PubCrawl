@@ -64,14 +64,15 @@ end
 
 pubs = [
     "The Sleazy Plover", "The Swanky Dank", "Chugbarfs Bar and Saloon", "Big Bertha's House Of Blues", 
-    "The Swan and Fist", "The Dirty Moose Knuckle", "The Drunken Duck", "The Filthy Ibis", "The Jolly Taxpayer",
-    "The Durries End", "The Elephant and Budgie", "The Jazz Cabbage", "The Gainfully Employed Poet", "The Ralph Bucket", 
+    "The Swan and Fist", "The Moose's Knuckle", "The Drunken Duck", "The Filthy Ibis", "The Jolly Taxpayer",
+    "The Durries End", "The Elephant and Budgie", "The Jazz Cabbage", "The Ralph Bucket", "The Tickled Pheasant",
     "Twig & Giggleberries", "The Slippery Dipstick", "Finnegins Chinnegin", "The Greasy Spit Valve", "Lord Monkeybums", 
-    "The Praying Mennis", "The Busted Football", "Haireola's","Nip & Sip's","The Cat's Diddle", "The Wig and Pissle",  ]
+    "The Praying Mennis", "The Busted Football", "Haireola's","Nip 'n' Sip's","The Cat's Diddle", "The Wig and Pissle", 
+    "The Drover's Sandwich" ]
 
 streets = [
     "Sesame Street", "Copperhead Road", "The Boulevard of Broken Dreams", "Baker Street","Route 66", "Penny Lane", "Ocean Avenue", 
-    "Iamthe Highway", "Electric Avenue", "Abbey Road", "Madison Avenue", "Smith Street", "Thunder Road", "Main Street", "the Highway to Hell",
+    "Iamthe Highway", "Electric Avenue", "Abbey Road", "Madison Avenue", "Smith Street", "Thunder Road", "Exile On Main Street", "The Highway to Hell",
     "Ventura Highway", "Sunset Boulevard", "Yellow Brick Road", "Road to Nowhere", "accross the 8-mile", "Ocean Drive", "Devil Gate Drive", 
     "Holiday Road" ]
 
@@ -91,24 +92,26 @@ douggie = Hero.new("Douggie","220","70","80")
 robbo = Hero.new("Robbo","270","100","60")
 bazza = Hero.new("Bazza","120","50","50")
 
+puts "****************************************************************************************************".colorize(:red)
+puts "--------------------Welcome to the ultimate PubCrawl adventure game!--------------------------------" 
+puts "****************************************************************************************************".colorize(:red)
 
 loop do 
-puts "Welcome to the ultimate PubCrawl adventure game! 
+        puts"
 
             1. Rules
             2. View Hero's
             3. Play
                                 "
 
-    answer = gets.chomp
-
-  
+        answer = gets.chomp
   
         case answer
     
         when "1"
             puts "
-            THE RULES ARE SIMPLE!
+            THE RULES ARE SIMPLE!".colorize(:red)
+            puts"
             Make it through 6 pubs without dying, blacking out or getting arrested.  
             Start by choosing one of four “heroes” - all have different starting stats.  
             The hero’s stats are affected by different drinks, different challenges and different obstacles.
@@ -127,15 +130,9 @@ puts "Welcome to the ultimate PubCrawl adventure game!
             Bartender – if swagger or sure footedness too low you can’t drink
             Bouncer – if swagger or sure footedness too low you denied entry"
               
-            puts ""
-            puts "
-                    1. Return to main menu
-                    2. View Hero's"  
-              
-                 answer = gets.chomp
-
-                             
+                                       
         when "2"
+            puts "HERE ARE YOUR LOCAL HEROES!!!!".colorize(:red)
             puts "1.#{kev.display_stats}"
             puts ""
             puts "2.#{douggie.display_stats}"
@@ -146,22 +143,54 @@ puts "Welcome to the ultimate PubCrawl adventure game!
             puts "who do you choose?"
          
         when "3" 
-            puts "You have just entered #{pub1.name}"
-        #   pub method
-
+            
+             break
         else 
             puts "unrecognized request"
         end
 
-    end 
+end 
+
+puts "Choose Your Hero!!!
+
+    1. Kev
+    2. Douggie
+    3. Robbo
+    4. Bazza "
     
+answer = gets.chomp
 
+chosen_hero = ""
 
+case answer
+
+when "1"
+      chosen_hero = kev
+when "2"
+    chosen_hero = douggie
+when "3"
+    chosen_hero = robbo
+when "4"
+    chosen_hero = bazza
+else
+    puts "unrecognized number"    
+ 
+end 
+
+system "clear"
+
+puts "Blimmen good choice! You've chosen #{chosen_hero.name}"
+puts ""
+
+puts chosen_hero.display_stats
+
+puts "ready for your first pub? y/n"
+
+answer = gets.chomp
+
+if "n"
     
-    
-
-
-
+puts "You have just entered #{pub1.name}"
 
 
 
