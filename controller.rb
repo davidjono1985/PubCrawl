@@ -5,7 +5,7 @@ require 'colorize'
 # Classes
 class Hero
         
-    @@initial_health = 100
+    @@initial_health = 100.to_i
     
         def self.initial_health
         @@initial_health
@@ -15,9 +15,9 @@ class Hero
 
     def initialize(name, cash, swagger_clout, sure_footedness)
         @name = name
-        @cash = cash
-        @swagger_clout = swagger_clout 
-        @sure_footedness = sure_footedness                   
+        @cash = cash.to_i
+        @swagger_clout = swagger_clout.to_i
+        @sure_footedness = sure_footedness.to_i                   
         @bladder = rand(1..40)
         @belly = rand(1..40)
         @health = Hero.initial_health
@@ -34,21 +34,66 @@ class Hero
         puts "Belly Level: #{@belly}"
     end 
 
-    def pub_drink()
-        puts "What would you like to drink
-        1. Pint $10
-        2. Spirit $10 
-        3. Shots! Shots! Shots! $10
-        4   . Bartenders choice" 
+     # class Time
+        #     def passage_of_time(days, hours, minutes, seconds)
+        #         @day = @day + days
+        #         @hours = @hours + hours
+        #     end
+        # end
+
+        # clock = Time.new()
+        # clock.passage_of_time(2, -5, 10, -30)
+
+    def stats_adjust(cash, health, swagger_clout, sure_footedness, bladder, belly)
+            @cash = @cash + cash
+            @health = @health + health
+            @swagger_clout = @swagger_clout + swagger_clout
+            @sure_footedness = @sure_footedness + sure_footedness
+            @bladder = @bladder + bladder
+            @belly = @belly + belly
+    end
+       
+    # def pub_drink()
+    #     puts "What would you like to drink?
+    #     1. Pint $10
+    #     2. Wine $8
+    #     3. Spirit $5 
+    #     4  Shots! Shots! Shots! $12"
     
-        answer = gets.chomp
-    
-        case answer
-        when "1"
-        @cash = @cash - 10
-    
-        end 
-    end 
+    #     answer = gets.chomp
+  
+    #     case answer
+    #     when "1"
+    #         @cash -= 10
+    #         @health -=2
+    #         @swagger_clout += 5
+    #         @sure_footedness -= 4
+    #         @bladder +=5
+    #         @belly += 2
+    #     when "2"
+    #         @cash -= 8
+    #         @health -=2
+    #         @swagger_clout += 5
+    #         @sure_footedness -= 4
+    #         @bladder +=5
+    #         @belly += 2
+    #     when "3"
+    #         @cash -= 5
+    #         @health -=2
+    #         @swagger_clout += 5
+    #         @sure_footedness -= 3
+    #         @bladder +=5
+    #         @belly += 2      
+    #     when "4"
+    #         @cash -= 12
+    #         @health -=2
+    #         @swagger_clout += 10
+    #         @sure_footedness -= 4
+    #         @bladder += 3
+    #         @belly += 1
+        
+    #     end 
+    # end 
     
 end
 
@@ -151,6 +196,8 @@ loop do
 
 end 
 
+system "clear"
+
 puts "Choose Your Hero!!!
 
     1. Kev
@@ -184,20 +231,30 @@ puts ""
 
 puts chosen_hero.display_stats
 
-puts "ready for your first pub? y/n"
+# puts "ready for your first pub? y/n"
 
-answer = gets.chomp
+# answer = gets.chomp
 
-if "n"
-    
-puts "You have just entered #{pub1.name}"
+# if "n"
 
 
+puts "You have just entered '#{pubs.shuffle.first}'"
 
+chosen_hero.stats_adjust(-10, -10, -10, -10, -10, -10)
 
+system "clear"
 
+puts chosen_hero.display_stats
 
+timer = 0
+30.times do
+puts timer 
 
+timer += 1
+
+sleep(1)
+
+end
 
 
 
