@@ -1,8 +1,11 @@
 system "clear"
 
 require 'colorize'
-# require './classes/hero_class.rb'
-# require './classes/location_class.rb'
+
+require './pub_drinks.rb'
+require './pub_challenge.rb'
+require './street_obstacle.rb'
+
 
 # Classes
 class Hero
@@ -26,8 +29,7 @@ class Hero
 
     end
 
-    #Methods
-    def display_stats()
+      def display_stats()
         puts "#{@name.upcase}'S STATS:".colorize(:red)
         puts "Health: #{@health}"
         puts "Cash: $#{@cash}"
@@ -45,36 +47,6 @@ class Hero
             @bladder = @bladder + bladder
             @belly = @belly + belly
     end
-       
-    def pub_drink()
-        puts "What would you like to drink?
-        1. Pint $10
-        2. Wine $8
-        3. Spirit $5 
-        4  Shots! Shots! Shots! $12"
-    
-        answer = gets.chomp
-  
-        case answer
-        when "1"
-            stats_adjust(-10, -2, +5, -4, +5, +2)
-        when "2"
-            stats_adjust(-10, -2, +5, -4, +5, +2)
-        when "3"
-            stats_adjust(-10, -2, +5, -4, +5, +2)     
-        when "4"
-            stats_adjust(-10, -2, +5, -4, +5, +2)
-        
-        end 
-    end 
-    
-
-   def pub_challenge
-       puts "how much do you want to bet?"
-
-       answer = gets.chomp.to_i
-        stats_adjust(answer, 0, 0, 0, 0, 0)
-   end
 
    def recharge
         loop do
@@ -100,26 +72,6 @@ class Hero
         end
     end
 
-    def obstacle
-        puts "On the way to the next pub you walk past a homeless busker playing spoons to the beat of Thunderstruck – do you
-        	1. Walk past
-        	2. Start clapping on the offbeat and jam out with him
-            3. Throw money in his torn-up buskers hat.
-        	4. Buy him a sandwich from the 7-11
-        "
-        answer = gets.chomp
-        case answer
-        when "1"
-        stats_adjust(1, 1, 1, 1, 1, 1)
-        when "2"
-        stats_adjust(1, 1, 1, 1, 1, 1)
-        when "3"
-        stats_adjust(1, 1, 1, 1, 1, 1)
-        when "4"
-        stats_adjust(1, 1, 1, 1, 1, 1)
-        end 
-
-    end
 end
 
 class Location
@@ -162,7 +114,14 @@ douggie = Hero.new("Douggie","220","70","80")
 robbo = Hero.new("Robbo","270","100","60")
 bazza = Hero.new("Bazza","120","50","50")
 
-# TITLE SCREEN, RULES AND PLAYER SELECTION:
+def printer(string)
+    array_of_characters = string.split(//);
+    for character in array_of_characters
+      sleep 0.1
+      print character
+    end
+end 
+
 def intro_banner()
     puts "****************************************************************************************************".colorize(:red)
     puts "--------------------Welcome to the ultimate PubCrawl adventure game!--------------------------------" 
@@ -203,7 +162,8 @@ loop do
             Bladder– if full you can’t drink any more until you go to the toilet
             Belly – if max is reached you automatically vomit (vomiting costs overall health and swagger points)
             INCREASE HEALTH ALONG THE WAY:
-            Alcohol – Pints, schooners, pots, spirits, shots, Kebabs, Energy Drinks,Ciggies (decreases health, increases swagger and clout)
+            Alcohol – Pints, schooners, pots, spirits, shots, Kebabs, Energy Drinks,Ciggies (decreases health, 
+            increases swagger and clout)
             DECREASE HEALTH ALONG THE WAY: Vomit Blackout Bar Fight
             OTHER:Toilet – empty bladder or belly
             Bartender – if swagger or sure footedness too low you can’t drink
@@ -260,30 +220,31 @@ end
 
 system "clear"
 
-puts "Blimmen good choice! You've chosen #{chosen_hero.name}"
+puts ("Blimmen good choice! You've chosen #{chosen_hero.name}")
 puts ""
 
 puts chosen_hero.display_stats
 
+#LEVEL1
 
+printer("You have just entered '#{pub1.name}'")
 
-#LEVEL
+chosen_hero.pub_drink1
 
-puts "You have just entered '#{pub1.name}'"
+chosen_hero.pub_challenge1
 
-chosen_hero.pub_drink
-
-chosen_hero.pub_challenge
+puts chosen_hero.display_stats
 
 puts "You leave '#{pub1.name}' and start walking along #{street1.name}"
 
 chosen_hero.recharge
 
-chosen_hero.obstacle
+chosen_hero.obstacle1
+chosen_hero.obstacle5
+chosen_hero.obstacle5
+chosen_hero.obstacle5
+chosen_hero.obstacle5
 
+puts chosen_hero.display_stats
 puts "You continue along #{street1.name} and head towards the next pub '#{pub2.name}'"
-
-
-
-
 
