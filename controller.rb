@@ -1,3 +1,5 @@
+system "clear"
+
 require 'colorize'
 # require './classes/hero_class.rb'
 # require './classes/location_class.rb'
@@ -24,6 +26,7 @@ class Hero
 
     end
 
+    #Methods
     def display_stats()
         puts "#{@name.upcase}'S STATS:".colorize(:red)
         puts "Health: #{@health}"
@@ -34,16 +37,6 @@ class Hero
         puts "Belly Level: #{@belly}"
     end 
 
-     # class Time
-        #     def passage_of_time(days, hours, minutes, seconds)
-        #         @day = @day + days
-        #         @hours = @hours + hours
-        #     end
-        # end
-
-        # clock = Time.new()
-        # clock.passage_of_time(2, -5, 10, -30)
-
     def stats_adjust(cash, health, swagger_clout, sure_footedness, bladder, belly)
             @cash = @cash + cash
             @health = @health + health
@@ -53,48 +46,80 @@ class Hero
             @belly = @belly + belly
     end
        
-    # def pub_drink()
-    #     puts "What would you like to drink?
-    #     1. Pint $10
-    #     2. Wine $8
-    #     3. Spirit $5 
-    #     4  Shots! Shots! Shots! $12"
+    def pub_drink()
+        puts "What would you like to drink?
+        1. Pint $10
+        2. Wine $8
+        3. Spirit $5 
+        4  Shots! Shots! Shots! $12"
     
-    #     answer = gets.chomp
+        answer = gets.chomp
   
-    #     case answer
-    #     when "1"
-    #         @cash -= 10
-    #         @health -=2
-    #         @swagger_clout += 5
-    #         @sure_footedness -= 4
-    #         @bladder +=5
-    #         @belly += 2
-    #     when "2"
-    #         @cash -= 8
-    #         @health -=2
-    #         @swagger_clout += 5
-    #         @sure_footedness -= 4
-    #         @bladder +=5
-    #         @belly += 2
-    #     when "3"
-    #         @cash -= 5
-    #         @health -=2
-    #         @swagger_clout += 5
-    #         @sure_footedness -= 3
-    #         @bladder +=5
-    #         @belly += 2      
-    #     when "4"
-    #         @cash -= 12
-    #         @health -=2
-    #         @swagger_clout += 10
-    #         @sure_footedness -= 4
-    #         @bladder += 3
-    #         @belly += 1
+        case answer
+        when "1"
+            stats_adjust(-10, -2, +5, -4, +5, +2)
+        when "2"
+            stats_adjust(-10, -2, +5, -4, +5, +2)
+        when "3"
+            stats_adjust(-10, -2, +5, -4, +5, +2)     
+        when "4"
+            stats_adjust(-10, -2, +5, -4, +5, +2)
         
-    #     end 
-    # end 
+        end 
+    end 
     
+
+   def pub_challenge
+       puts "how much do you want to bet?"
+
+       answer = gets.chomp.to_i
+        stats_adjust(answer, 0, 0, 0, 0, 0)
+   end
+
+   def recharge
+        loop do
+            puts "Eat/drnk/smoke on your walk?
+            1. kebab with the lot
+            2. DedBull energy drink
+            3. ciggie  
+            4. all done  
+            "
+            answer = gets.chomp
+            
+            case answer
+            when "1"
+            stats_adjust(1, 1, 1, 1, 1, 1)
+            when "2"
+            stats_adjust(1, 1, 1, 1, 1, 1)
+            when "3"
+            stats_adjust(1, 1, 1, 1, 1, 1)
+            when "4"
+            break
+            end 
+
+        end
+    end
+
+    def obstacle
+        puts "On the way to the next pub you walk past a homeless busker playing spoons to the beat of Thunderstruck – do you
+        	1. Walk past
+        	2. Start clapping on the offbeat and jam out with him
+            3. Throw money in his torn-up buskers hat.
+        	4. Buy him a sandwich from the 7-11
+        "
+        answer = gets.chomp
+        case answer
+        when "1"
+        stats_adjust(1, 1, 1, 1, 1, 1)
+        when "2"
+        stats_adjust(1, 1, 1, 1, 1, 1)
+        when "3"
+        stats_adjust(1, 1, 1, 1, 1, 1)
+        when "4"
+        stats_adjust(1, 1, 1, 1, 1, 1)
+        end 
+
+    end
 end
 
 class Location
@@ -109,17 +134,17 @@ end
 
 pubs = [
     "The Sleazy Plover", "The Swanky Dank", "Chugbarfs Bar and Saloon", "Big Bertha's House Of Blues", 
-    "The Swan and Fist", "The Moose's Knuckle", "The Drunken Duck", "The Filthy Ibis", "The Jolly Taxpayer",
+    "The Swan and Fist", "The Moose Knuckle", "The Drunken Duck", "The Filthy Ibis", "The Jolly Taxpayer",
     "The Durries End", "The Elephant and Budgie", "The Jazz Cabbage", "The Ralph Bucket", "The Tickled Pheasant",
     "Twig & Giggleberries", "The Slippery Dipstick", "Finnegins Chinnegin", "The Greasy Spit Valve", "Lord Monkeybums", 
     "The Praying Mennis", "The Busted Football", "Haireola's","Nip 'n' Sip's","The Cat's Diddle", "The Wig and Pissle", 
-    "The Drover's Sandwich" ]
+    "The Drover's Sandwich", "The Goosey Gander", ]
 
 streets = [
     "Sesame Street", "Copperhead Road", "The Boulevard of Broken Dreams", "Baker Street","Route 66", "Penny Lane", "Ocean Avenue", 
     "Iamthe Highway", "Electric Avenue", "Abbey Road", "Madison Avenue", "Smith Street", "Thunder Road", "Exile On Main Street", "The Highway to Hell",
-    "Ventura Highway", "Sunset Boulevard", "Yellow Brick Road", "Road to Nowhere", "accross the 8-mile", "Ocean Drive", "Devil Gate Drive", 
-    "Holiday Road" ]
+    "Ventura Highway", "Sunset Boulevard", "Yellow Brick Road", "Road to Nowhere", "The 8-mile", "Ocean Drive", "Devil Gate Drive", 
+    "Holiday Road", "Australia Street" ]
 
 pub1 = Location.new(pubs.shuffle.first)
 pub2 = Location.new(pubs.shuffle.first)
@@ -137,23 +162,32 @@ douggie = Hero.new("Douggie","220","70","80")
 robbo = Hero.new("Robbo","270","100","60")
 bazza = Hero.new("Bazza","120","50","50")
 
-puts "****************************************************************************************************".colorize(:red)
-puts "--------------------Welcome to the ultimate PubCrawl adventure game!--------------------------------" 
-puts "****************************************************************************************************".colorize(:red)
+# TITLE SCREEN, RULES AND PLAYER SELECTION:
+def intro_banner()
+    puts "****************************************************************************************************".colorize(:red)
+    puts "--------------------Welcome to the ultimate PubCrawl adventure game!--------------------------------" 
+    puts "****************************************************************************************************".colorize(:red)
+end 
+
+intro_banner()
 
 loop do 
+                
         puts"
-
-            1. Rules
-            2. View Hero's
-            3. Play
-                                "
+                    1. Rules          
+                    2. View Hero's    
+                    3. Play            
+           "
 
         answer = gets.chomp
   
         case answer
     
         when "1"
+            system "clear"
+            intro_banner()
+            
+           
             puts "
             THE RULES ARE SIMPLE!".colorize(:red)
             puts"
@@ -177,18 +211,18 @@ loop do
               
                                        
         when "2"
+            system "clear"
+            intro_banner()
             puts "HERE ARE YOUR LOCAL HEROES!!!!".colorize(:red)
-            puts "1.#{kev.display_stats}"
+            puts "#{kev.display_stats}"
             puts ""
-            puts "2.#{douggie.display_stats}"
+            puts "#{douggie.display_stats}"
             puts""
-            puts "3.#{robbo.display_stats}"
+            puts "#{robbo.display_stats}"
             puts""
-            puts "4.#{bazza.display_stats}"
-            puts "who do you choose?"
-         
+            puts "#{bazza.display_stats}"
+                    
         when "3" 
-            
              break
         else 
             puts "unrecognized request"
@@ -198,7 +232,7 @@ end
 
 system "clear"
 
-puts "Choose Your Hero!!!
+puts "Now choose Your Hero!!!
 
     1. Kev
     2. Douggie
@@ -231,31 +265,23 @@ puts ""
 
 puts chosen_hero.display_stats
 
-# puts "ready for your first pub? y/n"
-
-# answer = gets.chomp
-
-# if "n"
 
 
-puts "You have just entered '#{pubs.shuffle.first}'"
+#LEVEL
 
-chosen_hero.stats_adjust(-10, -10, -10, -10, -10, -10)
+puts "You have just entered '#{pub1.name}'"
 
-system "clear"
+chosen_hero.pub_drink
 
-puts chosen_hero.display_stats
+chosen_hero.pub_challenge
 
-timer = 0
-30.times do
-puts timer 
+puts "You leave '#{pub1.name}' and start walking along #{street1.name}"
 
-timer += 1
+chosen_hero.recharge
 
-sleep(1)
+chosen_hero.obstacle
 
-end
-
+puts "You continue along #{street1.name} and head towards the next pub '#{pub2.name}'"
 
 
 
