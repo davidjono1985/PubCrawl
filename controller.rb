@@ -1,7 +1,6 @@
 system "clear"
 
 require 'colorize'
-
 require './pub_drinks.rb'
 require './pub_challenge.rb'
 require './street_obstacle.rb'
@@ -98,16 +97,20 @@ streets = [
     "Ventura Highway", "Sunset Boulevard", "Yellow Brick Road", "Road to Nowhere", "The 8-mile", "Ocean Drive", "Devil Gate Drive", 
     "Holiday Road", "Australia Street" ]
 
-pub1 = Location.new(pubs.shuffle.first)
-pub2 = Location.new(pubs.shuffle.first)
-pub3 = Location.new(pubs.shuffle.first)
-pub4 = Location.new(pubs.shuffle.first)
-pub5 = Location.new(pubs.shuffle.first)
+list_of_pubs = [
+    Location.new(pubs.shuffle.first),
+    Location.new(pubs.shuffle.first),
+    Location.new(pubs.shuffle.first),
+    Location.new(pubs.shuffle.first),
+    Location.new(pubs.shuffle.first),
+]
 
-street1 = Location.new(streets.shuffle.first)
-street2 = Location.new(streets.shuffle.first)
-street3 = Location.new(streets.shuffle.first)
-street4 = Location.new(streets.shuffle.first)
+list_of_streets = [
+    Location.new(streets.shuffle.first),
+    Location.new(streets.shuffle.first),
+    Location.new(streets.shuffle.first),
+    Location.new(streets.shuffle.first),
+]
 
 kev = Hero.new("Kev","150","90","90")
 douggie = Hero.new("Douggie","220","70","80") 
@@ -225,26 +228,27 @@ puts ""
 
 puts chosen_hero.display_stats
 
+
+(0..4).each do |i|
+
+    
 #LEVEL1
 
-printer("You have just entered '#{pub1.name}'")
+    printer("You have just entered '#{list_of_pubs[i].name}'")
 
-chosen_hero.pub_drink1
+    # chosen_hero.pub_drink1
 
-chosen_hero.pub_challenge1
+    # chosen_hero.pub_challenge1
 
-puts chosen_hero.display_stats
+    # puts chosen_hero.display_stats
 
-puts "You leave '#{pub1.name}' and start walking along #{street1.name}"
+    puts "You leave '#{list_of_pubs[i].name}' and start walking along #{list_of_streets[i].name}"
 
-chosen_hero.recharge
+    # chosen_hero.recharge
 
-chosen_hero.obstacle1
-chosen_hero.obstacle5
-chosen_hero.obstacle5
-chosen_hero.obstacle5
-chosen_hero.obstacle5
+    # chosen_hero.obstacle1
 
-puts chosen_hero.display_stats
-puts "You continue along #{street1.name} and head towards the next pub '#{pub2.name}'"
+    # puts chosen_hero.display_stats
+    puts "You continue along #{list_of_streets[i].name} and head towards the next pub '#{list_of_pubs[i+1].name}'"
 
+end
