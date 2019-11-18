@@ -35,14 +35,6 @@ class Hero
          stats_adjust(answer, 0, 0, 0, 0, 0)
     end
 
-
-
-
-
-
-
-
-
-
 end
+
 

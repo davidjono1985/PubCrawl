@@ -1,6 +1,9 @@
 system "clear"
 
+require 'artii'
 require 'colorize'
+
+
 require './pub_drinks.rb'
 require './pub_challenge.rb'
 require './street_obstacle.rb'
@@ -125,9 +128,20 @@ def printer(string)
     end
 end 
 
+
+
+
+
 def intro_banner()
+    a = Artii::Base.new
+    a.asciify('word')
+    
+    
     puts "****************************************************************************************************".colorize(:red)
-    puts "--------------------Welcome to the ultimate PubCrawl adventure game!--------------------------------" 
+    puts a.asciify('                 PubCrawler')
+    
+    puts "-------------------------The ultimate Pub Crawl adventure game!-------------------------------------" 
+    puts ""
     puts "****************************************************************************************************".colorize(:red)
 end 
 
