@@ -79,22 +79,131 @@ class Hero
             end 
 
         end
+    
+    
     end
+    
+    def imbibe(drink)
+        #needs to adjust the hero's stats based on the chosen drink
+        stats_adjust(drink.cost, drink.health, drink.swagger_clout, drink.sure_footedness, drink.bladder, drink.belly )
+
+    end
+    
+    ###
+    # This method takes the users input and yada yada yada
+    # Input: decision (of type Decision)
+    # Outputs: no returns
+    ###
+    def make_a_decision(decision)
+        #needs to adjust the hero's stats based on the chosen drink
+        stats_adjust(decision.cost, decision.health, decision.swagger_clout, decision.sure_footedness, decision.bladder, decision.belly )
+
+    end
+
 
 end
 
-class Location
+class Venue
 
-    attr_reader :name
+    attr_reader :name, :street, :drinks, :obstacle
 
-    def initialize(name)
-    @name = name
+    def initialize(name, street, drinks, obstacle) 
+        @name = name
+        @street = street
+        @drinks = drinks
+        @obstacle = obstacle # type: Action 
+        # do the same thing for challenge
+    
     end
 
+    def display_menu()
+        
+        drinks.each_with_index do |drink, index|
+
+          puts "#{index+1}. #{drink.to_string()}"
+
+        end
+     
+     end
+
+     def display_obstacle()
+     
+        puts obstacle.proposition
+        
+        obstacle.decisions.each_with_index do |decision, index|
+        
+        puts "#{index}. #{decision.name}"
+        end
+
+    end 
+
+
+
+
+
+end
+
+
+class Drink
+
+    attr_reader :name, :cost, :swagger_clout, :sure_footedness, :bladder, :belly, :health
+    
+        def initialize(name, cost, swagger_clout, sure_footedness, bladder, belly, health)
+            @name = name
+            @cost = cost.to_i
+            @swagger_clout = swagger_clout.to_i
+            @sure_footedness = sure_footedness.to_i                   
+            @bladder = bladder
+            @belly = belly
+            @health = health
+        end
+        
+       def to_string()
+            return "#{@name} $#{@cost}"
+
+       end 
+    
+end
+
+class Action
+
+    attr_reader :proposition, :decisions
+
+    def initialize(proposition, decisions)
+     @proposition = proposition
+     @decisions = decisions
+    
+    end 
+
+
+end
+
+class Decision
+
+    attr_reader :name, :cost, :swagger_clout, :sure_footedness, :bladder, :belly, :health
+    
+        def initialize(name, cost, swagger_clout, sure_footedness, bladder, belly, health)
+            @name = name
+            @cost = cost.to_i
+            @swagger_clout = swagger_clout.to_i
+            @sure_footedness = sure_footedness.to_i                   
+            @bladder = bladder
+            @belly = belly
+            @health = health
+        end
+        
+
+
+
+       def to_string()
+            return "#{@name}"
+#name will be eg put a fiver in old willys hat
+       end 
+    
 end
 
 pubs = [
-    "The Sleazy Plover", "The Swanky Dank", "Chugbarfs Bar and Grill", "Big Bertha's House Of Blues", 
+    "The Sleazy Plover", "The Swanky Dank", "Chugbarfs Bar and Saloon", "Big Bertha's House Of Blues", 
     "The Swan and Fist", "The Moose Knuckle", "The Drunken Duck", "The Filthy Ibis", "The Jolly Taxpayer",
     "The Durries End", "The Elephant and Budgie", "The Jazz Cabbage", "The Ralph Bucket", "The Tickled Pheasant",
     "Twig & Giggleberries", "The Slippery Dipstick", "Finnegins Chinnegin", "The Greasy Spit Valve", "Lord Monkeybums", 
@@ -108,18 +217,48 @@ streets = [
     "Holiday Road", "Australia Street" ]
 
 list_of_pubs = [
-    Location.new(pubs.shuffle.first),
-    Location.new(pubs.shuffle.first),
-    Location.new(pubs.shuffle.first),
-    Location.new(pubs.shuffle.first),
-    Location.new(pubs.shuffle.first),
+
+ 
 ]
 
+(0..4).each do 
+    drinks = [
+        Drink.new("Pint of Beer", "10", 20, -20, +10, +5, -5),
+        Drink.new("Spirit of Choice", "5", 15, -15, +8, +4, -4),
+        Drink.new("Shots, Shots Shots!", "12", 30, -20, +15, +6, -6)
+
+    ]
+
+    decisions =  [
+## todo: change values to match obstacle
+        Decision.new("Walk past,", "10", 20, -20, +10, +5, -5),
+        Decision.new("Start clapping on the offbeat and jam out with him", "5", 15, -15, +8, +4, -4),
+        Decision.new("Throw money in his torn-up buskers hat.", "12", 30, -20, +15, +6, -6),
+        Decision.new("Buy him a sandwich from the 7-11.", "12", 30, -20, +15, +6, -6)
+
+    ]
+
+   
+    
+    
+    
+    
+    obstacle = Action.new(' On the way to the next pub you walk past a homeless busker playing spoons to the beat of Thunderstruck.  Do you:', decisions)
+
+
+    venue = Venue.new(pubs.shuffle.first,streets.shuffle.first, drinks, obstacle)
+    list_of_pubs.push venue
+
+
+#add venue to list of pubs
+
+end 
+
 list_of_streets = [
-    Location.new(streets.shuffle.first),
-    Location.new(streets.shuffle.first),
-    Location.new(streets.shuffle.first),
-    Location.new(streets.shuffle.first),
+    # Location.new(streets.shuffle.first),
+    # Location.new(streets.shuffle.first),
+    # Location.new(streets.shuffle.first),
+    # Location.new(streets.shuffle.first),
 ]
 
 kev = Hero.new("Kev","150","90","90")
@@ -135,8 +274,23 @@ def printer(string)
     end
 end 
 
-def clear
+def clear()
     system "clear"
+end
+
+# utility methods
+
+def do_step(display_method, options)
+    #display step - need to add call
+    display_method.call()
+    # user input
+    user_input = gets.chomp.to_i
+    # get answer from user 
+    selection = user_input -1 # 1,2,3 -> 0,1,2
+    # find selected option
+    selected_option = options[selection]
+    #return selected option
+    return selected_option
 end
 
 
@@ -269,9 +423,8 @@ printer "Let's get crawling!!!!"
 
 sleep(1)
 
-(0..4).each do |i|
-
-crawlerman
+list_of_pubs.each do |venue|
+# crawlerman
 
 clear
 
@@ -279,7 +432,7 @@ clear
                       /                             /
                      /_____________________________/ |                             
          ,****.      |                            |  |
-        {      }     |    #{list_of_pubs[i].name}                     
+        {      }     |    #{venue.name}                     
         .     ,*     |     ________________       |  | 
          ‘} }’       |     |              |############|               
          ./ }        |     |              |############|             
@@ -299,53 +452,41 @@ sleep(2)
 clear
     
 #LEVEL1
-
-    printer("You have just entered '#{list_of_pubs[i].name}'")
+puts chosen_hero.display_stats()
+    printer("You have just entered '#{venue.name}'")
     puts ""
-    case i
-    when 1
-       chosen_hero.pub_drink1
-    when 2
-        chosen_hero.pub_drink2
-    when 3
-        chosen_hero.pub_drink3
-    when 4
-        chosen_hero.pub_drink4
-    when 5
-        chosen_hero.pub_drink5
-    end
 
-    clear
-
-    
-    case i
-    when 1
-        chosen_hero.pub_challenge1
-    when 2
-        chosen_hero.pub_challenge2
-    when 3
-        chosen_hero.pub_challenge3
-    when 4
-        chosen_hero.pub_challenge4
-    when 5
-        chosen_hero.pub_challenge5
-    end
+    selected_drink = do_step(venue.method(:display_menu), venue.drinks)
 
 
-    puts chosen_hero.display_stats
+# stats adjusted accordingly
+chosen_hero.imbibe(selected_drink)
+
+
+puts chosen_hero.display_stats
+   sleep(4)
+
+    # chosen_hero.pub_challenge1()
+
+    selected_decision = do_step(venue.method(:display_obstacle), venue.obstacle.decisions)
+#make the decision
+    chosen_hero.make_a_decision(selected_decision)
+
+    puts chosen_hero.display_stats()
+
+
     sleep(4)
     clear
     
-    printer("You leave '#{list_of_pubs[i].name}' and start walking along #{list_of_streets[i].name}")
+    printer("You leave '#{venue.name}' and start walking along #{venue.street}")
 
     puts ""
 
-    chosen_hero.recharge
+    chosen_hero.recharge()
     clear
 
-    chosen_hero.obstacle1
 
-    puts chosen_hero.display_stats
-    printer("You continue along #{list_of_streets[i].name} and head towards the next pub '#{list_of_pubs[i+1].name}'")
+    puts chosen_hero.display_stats()
+    printer("You continue along #{venue.street} and head towards the next pub '#{venue.name}'")
 
 end

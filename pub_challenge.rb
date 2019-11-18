@@ -1,7 +1,8 @@
 class Hero
 
     def pub_challenge1()
-        printer "At the back of the pub one of the locals Blind Willy is playing a bootleg game of dice.  He challenges you to have a roll for money..
+        printer "At the back of the pub one of the locals 'Blind Willy' is playing a bootleg game of dice.  
+        He challenges you to have a roll for money..
         
         How much do you bet?"
  

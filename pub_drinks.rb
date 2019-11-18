@@ -79,7 +79,7 @@ class Hero
     def pub_drink4()
         puts"
         What would you like to drink4?
-        1. Pint $10
+        1. A horn of mead $10
         2. Wine $8
         3. Spirit $5 
         4  Shots! Shots! Shots! $12"
@@ -105,7 +105,7 @@ class Hero
         puts"
         What would you like to drink5?
         1. Pint of warm beer $10
-        2. Swig straight from the goon bag $8
+        2. Goon straight from the sack $8
         3. I think its rum? $5 
         4  Shot of Absinthe! $22"
     

@@ -48,12 +48,12 @@ class Hero
     end
 
     def obstacle3()
-        puts "
+        printer "
             You encounter a group of rival bogans arguing about the merits of Ford’s vs Holdens  – they ask you to choose what you prefer.  You answer:
             1.	Fords
             2.	Holdens
-            3.	Nissan Micra's
-            4.	Take a swig of their Bundaberg Rum
+            3.	Nissan Micra's belong on Bathurst
+            4.	Give us some of your Bundy brah
         
         "
         answer = gets.chomp
@@ -70,12 +70,12 @@ class Hero
 
     end
     def obstacle4()
-        puts "
-        Liberal student hipsters are standing outside Hungry Jacks protesting the lack of beard oil options in their bathrooms. 
+        printer "
+        You saunter past a cohort of liberal student hipsters - they are standing outside Hungry Jacks protesting the lack of beard oil options in their bathrooms. 
         Do you:
         1.	Ignore them
         2.	Walk past shaking your head
-        3.	Join their protest
+        3.	Enthusiastically join their protest 
         4.	Spend 15 minutes explaining to them they don’t know what real issues are. 
         
         "
@@ -93,13 +93,13 @@ class Hero
 
     end
     def obstacle5()
-        puts "
+        printer "
             **BOSS LEVEL MONSTER**
-            A yeeting crowd of Gen Z’s stop you to flex their bougie  
+            A crowd of what could only be 18 year olds, stop you and start speaking to you using indecipherable gen Z babble.  Do you:
         	1. Walk past
-        	2. Start clapping on the offbeat and jam out with him
-            3. Throw money in his torn-up buskers hat.
-        	4. Buy him a sandwich from the 7-11
+        	2. wierd flex but Ok
+            3. Yeet
+        	4. Nice one Boomer
         "
         answer = gets.chomp
         case answer
