@@ -3,8 +3,8 @@ class Hero
     
     
     def obstacle1()
-        puts "
-            On the way to the next pub you walk past a homeless busker playing spoons to the beat of Thunderstruck – do you:
+        printer "
+            On the way to the next pub you walk past a homeless busker playing spoons to the beat of Thunderstruck.  Do you:
         	1. Walk past
         	2. Start clapping on the offbeat and jam out with him
             3. Throw money in his torn-up buskers hat.
@@ -24,9 +24,9 @@ class Hero
 
     end
     def obstacle2()
-        puts "
+        printer "
         A gaggle of hen’s walk past – they are on a pub crawl of their own. The maid of honour stops you in the 
-        middle of the street and asks you to take a photo of her girls for her Instagram story:
+        middle of the street and asks you to take a photo of her tribe for her Instagram story:
         1.	Accept
         2.	Decline
         3.	Say yes but take a video instead
@@ -49,7 +49,7 @@ class Hero
 
     def obstacle3()
         puts "
-            A group of rival bogans start arguing the merits of Ford’s vs Holdens – they ask you to choose what you prefer.  You answer:
+            You encounter a group of rival bogans arguing about the merits of Ford’s vs Holdens  – they ask you to choose what you prefer.  You answer:
             1.	Fords
             2.	Holdens
             3.	Nissan Micra's

@@ -3,7 +3,7 @@ system "clear"
 require 'artii'
 require 'colorize'
 
-
+require './crawlerman.rb'
 require './pub_drinks.rb'
 require './pub_challenge.rb'
 require './street_obstacle.rb'
@@ -51,8 +51,12 @@ class Hero
     end
 
    def recharge
-        loop do
-            puts "Eat/drnk/smoke on your walk?
+        printer "Would you like to eat/drnk/smoke on your walk?"
+    
+         loop do
+            
+           puts" 
+           
             1. kebab with the lot
             2. DedBull energy drink
             3. ciggie  
@@ -63,10 +67,13 @@ class Hero
             case answer
             when "1"
             stats_adjust(1, 1, 1, 1, 1, 1)
+            puts "anything else?"
             when "2"
             stats_adjust(1, 1, 1, 1, 1, 1)
+            puts "anything else?"
             when "3"
             stats_adjust(1, 1, 1, 1, 1, 1)
+            puts "anything else?"
             when "4"
             break
             end 
@@ -87,7 +94,7 @@ class Location
 end
 
 pubs = [
-    "The Sleazy Plover", "The Swanky Dank", "Chugbarfs Bar and Saloon", "Big Bertha's House Of Blues", 
+    "The Sleazy Plover", "The Swanky Dank", "Chugbarfs Bar and Grill", "Big Bertha's House Of Blues", 
     "The Swan and Fist", "The Moose Knuckle", "The Drunken Duck", "The Filthy Ibis", "The Jolly Taxpayer",
     "The Durries End", "The Elephant and Budgie", "The Jazz Cabbage", "The Ralph Bucket", "The Tickled Pheasant",
     "Twig & Giggleberries", "The Slippery Dipstick", "Finnegins Chinnegin", "The Greasy Spit Valve", "Lord Monkeybums", 
@@ -128,26 +135,40 @@ def printer(string)
     end
 end 
 
-
-
+def clear
+    system "clear"
+end
 
 
 def intro_banner()
     a = Artii::Base.new
     a.asciify('word')
-    
-    
-    puts "****************************************************************************************************".colorize(:red)
+  
+ 
+    puts "************************************************************************************************************".colorize(:red)
     puts a.asciify('                 PubCrawler')
     
-    puts "-------------------------The ultimate Pub Crawl adventure game!-------------------------------------" 
+    puts "-----The ultimate Pub Crawl adventure game!-----------------------------------------------------------------" 
     puts ""
-    puts "****************************************************************************************************".colorize(:red)
+    puts "************************************************************************************************************".colorize(:red)
 end 
+
+def banner(string)
+a = Artii::Base.new
+a.asciify(string)
+
+puts "************************************************************************************************************".colorize(:red)
+puts a.asciify(string)
+puts "------------------------------------------------------------------------------------------------------------" 
+puts ""
+puts "************************************************************************************************************".colorize(:red)
+end  
+
+
 
 intro_banner()
 
-loop do 
+loop do 1
                 
         puts"
                     1. Rules          
@@ -207,10 +228,10 @@ loop do
 
 end 
 
-system "clear"
+clear
+banner("CHOOSE YOUR HERO!!")
 
-puts "Now choose Your Hero!!!
-
+puts"    
     1. Kev
     2. Douggie
     3. Robbo
@@ -235,34 +256,96 @@ else
  
 end 
 
-system "clear"
+clear
 
-puts ("Blimmen good choice! You've chosen #{chosen_hero.name}")
+printer ("Bloody good choice! You've chosen #{chosen_hero.name}!!!")
 puts ""
-
+puts ""
 puts chosen_hero.display_stats
 
+sleep(2)
+
+printer "Let's get crawling!!!!"
+
+sleep(1)
 
 (0..4).each do |i|
 
+crawlerman
+
+clear
+
+    puts "             
+                      /                             /
+                     /_____________________________/ |                             
+         ,****.      |                            |  |
+        {      }     |    #{list_of_pubs[i].name}                     
+        .     ,*     |     ________________       |  | 
+         ‘} }’       |     |              |############|               
+         ./ }        |     |              |############|             
+       /’ .} ‘       |     |              |############|   
+       }! }   ).     |     |              |############|                 
+       {..}  /-_.}   |     |              |######## () |                  
+         {   /,      |     |     . . . . .|############|              
+        / /’>  *.    |     |   /          |############|                   
+        { / ‘.‘/     |     |  /           |############|                      
+        {};   } .    |     | /            |############|                   
+         {‘_*>.      |     |/             |############|                      
+ |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>"
+
+sleep(2)
+
+
+clear
     
 #LEVEL1
 
     printer("You have just entered '#{list_of_pubs[i].name}'")
+    puts ""
+    case i
+    when 1
+       chosen_hero.pub_drink1
+    when 2
+        chosen_hero.pub_drink2
+    when 3
+        chosen_hero.pub_drink3
+    when 4
+        chosen_hero.pub_drink4
+    when 5
+        chosen_hero.pub_drink5
+    end
 
-    # chosen_hero.pub_drink1
+    clear
 
-    # chosen_hero.pub_challenge1
+    
+    case i
+    when 1
+        chosen_hero.pub_challenge1
+    when 2
+        chosen_hero.pub_challenge2
+    when 3
+        chosen_hero.pub_challenge3
+    when 4
+        chosen_hero.pub_challenge4
+    when 5
+        chosen_hero.pub_challenge5
+    end
 
-    # puts chosen_hero.display_stats
 
-    puts "You leave '#{list_of_pubs[i].name}' and start walking along #{list_of_streets[i].name}"
+    puts chosen_hero.display_stats
+    sleep(4)
+    clear
+    
+    printer("You leave '#{list_of_pubs[i].name}' and start walking along #{list_of_streets[i].name}")
 
-    # chosen_hero.recharge
+    puts ""
 
-    # chosen_hero.obstacle1
+    chosen_hero.recharge
+    clear
 
-    # puts chosen_hero.display_stats
-    puts "You continue along #{list_of_streets[i].name} and head towards the next pub '#{list_of_pubs[i+1].name}'"
+    chosen_hero.obstacle1
+
+    puts chosen_hero.display_stats
+    printer("You continue along #{list_of_streets[i].name} and head towards the next pub '#{list_of_pubs[i+1].name}'")
 
 end
