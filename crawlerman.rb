@@ -2,24 +2,21 @@
 def crawlerman
 
 
-      timer = 0
+  timer = 0
 
-    loop do
+  loop do
 
     timer += 1
     
     sleep(1)
 
-
-
-          case timer
-         
-    
-
-          when 1 
-          system "clear"   
+    case timer
+             
+        when 1 
+          
+        system "clear"   
   
-          puts "          
+        puts "          
              
           ,****.                
          {      }     
@@ -36,10 +33,11 @@ def crawlerman
       ‘__}    **’                             
     >| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>"
 
-          when 2
-          system "clear"
+        when 2
+
+        system "clear"
       
-    puts "
+        puts "
     
           ,****.                
          {      }     
@@ -56,12 +54,11 @@ def crawlerman
                                          
      |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>"
     
-          when 3
+        when 3
 
-      system "clear"
+        system "clear"
       
-
-    puts "
+        puts "
     
           ,****.                
          {      }     
@@ -80,10 +77,9 @@ def crawlerman
     
         when 4
 
-      system "clear"
+        system "clear"
       
-
-    puts "
+        puts "
     
           ,****.                
          {      }     
@@ -100,12 +96,11 @@ def crawlerman
       ‘_*>.                             
      |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>"
 
-      when 5 
+        when 5 
 
-    system "clear"
-    
-     
-    puts "
+        system "clear"
+         
+        puts "
 
           ,****.                
          {      }     
@@ -124,10 +119,9 @@ def crawlerman
 
         when 6
 
-      system "clear"
+        system "clear"
       
-
-    puts "
+        puts "
 
           ,****.                
          {      }     
@@ -146,10 +140,9 @@ def crawlerman
     
         when 7
 
-      system "clear"
+        system "clear"
       
-
-    puts "
+        puts "
 
           ,****.                
          {      }     
@@ -168,10 +161,9 @@ def crawlerman
     
         when 8
 
-      system "clear"
+        system "clear"
       
-
-    puts "
+        puts "
 
           ,****.                
          {      }     
@@ -188,10 +180,11 @@ def crawlerman
       ‘_*>.                             
     |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |"
     
-      when 9 
-    system "clear"   
+        when 9 
+      
+        system "clear"   
     
-      puts "    
+        puts "    
                                                          ________            
             ,****.                                      /             
            {      }                                    /_________        
@@ -208,11 +201,11 @@ def crawlerman
         ‘__}    **’                                   |     |      
       >| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>"
   
-          when 10
+        when 10
   
         system "clear"
         
-      puts "    
+        puts "    
                                                 __________________                                  
             ,****.                             /                                   
            {      }                           /___________________                        
@@ -229,12 +222,11 @@ def crawlerman
                                               |     |            |   
        |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>"
       
-          when 11
+        when 11
   
         system "clear"
         
-  
-      puts "     
+        puts "     
                                       _________________________                               
             ,****.                   /                             
            {      }                 /_________________________/                                
@@ -251,12 +243,11 @@ def crawlerman
           -^*-'                    |     |            |      |    
       >| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>"
       
-          when 12
+        when 12
   
         system "clear"
         
-  
-      puts "     
+        puts "     
                              __________________________
             ,****.          /                         /|                      
            {      }        /_________________________/ |                                     
@@ -272,18 +263,16 @@ def crawlerman
         {/ /    ‘..''      |     |            |     | /              
         ‘_*>.              |     |            |     |/                  
        |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>"
-
-
-       
-      
+            
+        when 13
         
-      
-      when 13
-        break
-      end 
-    end
+          break
+
+        else 
+          puts "ERROR: something went wrong"
     
+    end 
+
   end
-
-
-
+    
+end

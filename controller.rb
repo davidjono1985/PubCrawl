@@ -4,7 +4,7 @@ require 'artii'
 require 'colorize'
 
 require './crawlerman.rb'
-require './pub_drinks.rb'
+
 require './pub_challenge.rb'
 require './street_obstacle.rb'
 
