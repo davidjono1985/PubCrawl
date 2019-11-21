@@ -1,12 +1,12 @@
 system "clear"
 
+require 'tty-prompt'
+require 'tty-table'
 require 'artii'
 require 'colorize'
 
-require './crawlerman.rb'
 
-require './pub_challenge.rb'
-require './street_obstacle.rb'
+require './crawlerman.rb'
 
 
 # Classes
@@ -137,10 +137,6 @@ class Venue
 
     end 
 
-
-
-
-
 end
 
 
@@ -182,23 +178,21 @@ class Decision
 
     attr_reader :name, :cost, :swagger_clout, :sure_footedness, :bladder, :belly, :health
     
-        def initialize(name, cost, swagger_clout, sure_footedness, bladder, belly, health)
-            @name = name
-            @cost = cost.to_i
-            @swagger_clout = swagger_clout.to_i
-            @sure_footedness = sure_footedness.to_i                   
-            @bladder = bladder
-            @belly = belly
-            @health = health
-        end
-        
+    def initialize(name, array)
+        @name = name
+        @cost = array[0].to_i
+        @swagger_clout = array[1].to_i
+        @sure_footedness = array[2].to_i                   
+        @bladder = array[3]
+        @belly = array[4]
+        @health = array[5]
+    end
+    
 
-
-
-       def to_string()
-            return "#{@name}"
-#name will be eg put a fiver in old willys hat
-       end 
+    #name will be eg put a fiver in old willys hat
+    def to_string()
+        return "#{@name}"
+    end 
     
 end
 
@@ -216,34 +210,117 @@ streets = [
     "Ventura Highway", "Sunset Boulevard", "Yellow Brick Road", "Road to Nowhere", "The 8-mile", "Ocean Drive", "Devil Gate Drive", 
     "Holiday Road", "Australia Street" ]
 
-list_of_pubs = [
+list_of_pubs = []
 
- 
+
+
+# list_of_obstacles[0][:question], list_of_obstacles[0][:option1][:text], list_of_obstacles[:option1][:result]
+
+list_of_obstacles = [
+    {
+        question: "On the way to the next pub you walk past a homeless busker playing spoons to the beat of Thunderstruck.  Do you:",
+        option1: {
+            text: "Walk past and ignore him",
+            result: ["0", 20, -20, +10, +5, -5]
+        }, 
+        option2: {
+            text: "Start clapping on the offbeat and jam out with him",
+            result: ["0", 20, -20, +10, +5, -5]
+        },
+        option3: {
+            text: "Throw money in his torn-up buskers hat",
+            result: ["5", 20, -20, +10, +5, -5]
+        }, 
+        option4: {
+            text: "Buy him a sandwich from the 7-11",
+            result: ["5", 20, -20, +10, +5, -5]
+        },
+    }, {
+        question: "A gaggle of hen’s walk past – they are on a pub crawl of their own. The maid of honour stops you in the 
+        middle of the street and asks you to take a photo of her tribe for her Instagram story.  Do you:",
+        option1: {
+            text: "Accept",
+            result: ["10", 20, -20, +10, +5, -5]
+        }, 
+        option2: {
+            text: "Decline",
+            result: ["10", 20, -20, +10, +5, -5]
+        },
+        option3: {
+            text: "Say yes, but take a video instead cuz you're a funny sob",
+            result: ["10", 20, -20, +10, +5, -5]
+        }, 
+        option4: {
+            text: "Steal her camera, run off laughing and throw it in the local river",
+            result: ["10", 20, -20, +10, +5, -5]
+        },
+    }, {
+        question: "You see a charity mugger on the sidewalk pushing for subscriptions to the new Clown doctors, what do?",
+        option1: {
+            text: "Walk past and ignore him",
+            result: ["10", 20, -20, +10, +5, -5]
+        }, 
+        option2: {
+            text: "nut kick",
+            result: ["10", 20, -20, +10, +5, -5]
+        },
+        option3: {
+            text: "subscribe to his charity",
+            result: ["10", 20, -20, +10, +5, -5]
+        }, 
+        option4: {
+            text: "Verbally abuse the bloke trying to make a living",
+            result: ["10", 20, -20, +10, +5, -5]
+        },
+    }, {
+        question: "You saunter past a cohort of liberal student hipsters - they are standing outside Hungry Jacks protesting the lack 
+        of beard oil options in their bathrooms. 
+        Do you:",
+        option1: {
+            text: "Ignore them",
+            result: ["10", 20, -20, +10, +5, -5]
+        }, 
+        option2: {
+            text: "Walk past shaking your head",
+            result: ["10", 20, -20, +10, +5, -5]
+        },
+        option3: {
+            text: "Enthusiastically join their protest",
+            result: ["10", 20, -20, +10, +5, -5]
+        }, 
+        option4: {
+            text: "Spend 15 minutes explaining to them they don’t know what real issues are. ",
+            result: ["10", 20, -20, +10, +5, -5]
+        }
+    },
 ]
+
+
+
 
 (0..4).each do 
     drinks = [
         Drink.new("Pint of Beer", "10", 20, -20, +10, +5, -5),
         Drink.new("Spirit of Choice", "5", 15, -15, +8, +4, -4),
         Drink.new("Shots, Shots Shots!", "12", 30, -20, +15, +6, -6)
-
     ]
 
-    decisions =  [
 ## todo: change values to match obstacle
-        Decision.new("Walk past,", "10", 20, -20, +10, +5, -5),
-        Decision.new("Start clapping on the offbeat and jam out with him", "5", 15, -15, +8, +4, -4),
-        Decision.new("Throw money in his torn-up buskers hat.", "12", 30, -20, +15, +6, -6),
-        Decision.new("Buy him a sandwich from the 7-11.", "12", 30, -20, +15, +6, -6)
 
+    # find a method to remove a element from the array so it isn't chosen twice
+    obstacle = list_of_obstacles.shuffle.first
+    decisions = [
+        Decision.new(obstacle[:option1][:text], obstacle[:option1][:result]),
+        # Decision.new(obstacle[:option1][:text], obstacle[:option1][:result]),
+        Decision.new(obstacle[:option2][:text], obstacle[:option2][:result]),
+        Decision.new(obstacle[:option3][:text], obstacle[:option3][:result]),
+        Decision.new(obstacle[:option4][:text], obstacle[:option4][:result])
     ]
+        
 
-   
-    
-    
-    
-    
-    obstacle = Action.new(' On the way to the next pub you walk past a homeless busker playing spoons to the beat of Thunderstruck.  Do you:', decisions)
+    obstacle = Action.new(obstacle[:question], decisions)
+    # obstacle = Action.new(obstacle[:question], decisions)
+
 
 
     venue = Venue.new(pubs.shuffle.first,streets.shuffle.first, drinks, obstacle)
@@ -261,10 +338,12 @@ list_of_streets = [
     # Location.new(streets.shuffle.first),
 ]
 
-kev = Hero.new("Kev","150","90","90")
-douggie = Hero.new("Douggie","220","70","80") 
-robbo = Hero.new("Robbo","270","100","60")
+kev = Hero.new("Kev","340","90","90")
+douggie = Hero.new("Douggie","250","70","80") 
+robbo = Hero.new("Robbo","220","100","60")
 bazza = Hero.new("Bazza","120","50","50")
+
+
 
 def printer(string)
     array_of_characters = string.split(//);
@@ -302,27 +381,27 @@ def intro_banner()
     puts "************************************************************************************************************".colorize(:red)
     puts a.asciify('                 PubCrawler')
     
-    puts "-----The ultimate Pub Crawl adventure game!-----------------------------------------------------------------" 
+    puts "-----------------------------The ultimate Pub Crawl adventure game!------------------------------------------" 
     puts ""
     puts "************************************************************************************************************".colorize(:red)
 end 
 
 def banner(string)
-a = Artii::Base.new
-a.asciify(string)
+    a = Artii::Base.new
+    a.asciify(string)
 
-puts "************************************************************************************************************".colorize(:red)
-puts a.asciify(string)
-puts "------------------------------------------------------------------------------------------------------------" 
-puts ""
-puts "************************************************************************************************************".colorize(:red)
+    puts "************************************************************************************************************".colorize(:red)
+    puts a.asciify(string)
+    puts "------------------------------------------------------------------------------------------------------------" 
+    puts ""
+    puts "************************************************************************************************************".colorize(:red)
 end  
 
 
 
 intro_banner()
 
-loop do 1
+loop do 
                 
         puts"
                     1. Rules          
@@ -366,127 +445,147 @@ loop do 1
             system "clear"
             intro_banner()
             puts "HERE ARE YOUR LOCAL HEROES!!!!".colorize(:red)
+            
+            table = TTY::Table.new ['NAME','DESCRIPTION',],[['Kev', 'Kevs leader of the pack - cashed up and full of street smarts'] ]
+                                 
+            puts table.render(:unicode)           
+            puts""
             puts "#{kev.display_stats}"
-            puts ""
+
+            table = TTY::Table.new ['NAME','DESCRIPTION',],[['Douggie', 'Douggies a champ - jack of all trades master of nothing'] ]
+                                 
+            puts table.render(:unicode)           
+            puts""
             puts "#{douggie.display_stats}"
+
+            table = TTY::Table.new ['NAME','DESCRIPTION',],[['Robbo', 'Where Robbo lacks in sure-footedness, he makes it up with SHWAGGGG'] ]
+                                 
+            puts table.render(:unicode)           
             puts""
             puts "#{robbo.display_stats}"
+
+            table = TTY::Table.new ['NAME','DESCRIPTION',],[['Bazza', 'Bazza is the personification of life on hard mode.  Good luck'] ]
+                                 
+            puts table.render(:unicode)           
             puts""
             puts "#{bazza.display_stats}"
-                    
+
+            
         when "3" 
-             break
+            clear
+            banner("CHOOSE YOUR HERO!!")
+
+            # prompt.select("Which of our local hero's do you choose?", %w(Kev Douggie Robbo Bazza))
+
+            puts "Now choose Your Hero!!!
+                1. Kev
+                2. Douggie
+                3. Robbo
+                4. Bazza "
+                    
+            answer = gets.chomp
+
+            chosen_hero = ""
+
+            case answer
+
+            when "1"
+                chosen_hero = kev
+            when "2"
+                chosen_hero = douggie
+            when "3"
+                chosen_hero = robbo
+            when "4"
+                chosen_hero = bazza
+            else
+                puts "unrecognized number"    
+            
+            end 
+
+            system "clear"
+
+            puts ("Blimmen good choice! You've chosen #{chosen_hero.name}")
+            puts ""
+
+            puts chosen_hero.display_stats
+
+            sleep(2)
+            # prompt.yes?('Would you like to continue?')
+            printer "Let's get crawling!!!!"
+
+            sleep(1)
+
+            list_of_pubs.each do |venue|
+            crawlerman
+
+            clear
+
+                puts "             
+                                /                             /
+                                /_____________________________/ |                             
+                    ,****.      |                            |  |
+                    {      }     |    #{venue.name}                     
+                    .     ,*     |     ________________       |  | 
+                    ‘} }’       |     |              |############|               
+                    ./ }        |     |              |############|             
+                /’ .} ‘       |     |              |############|   
+                }! }   ).     |     |              |############|                 
+                {..}  /-_.}   |     |              |######## () |                  
+                    {   /,      |     |     . . . . .|############|              
+                    / /’>  *.    |     |   /          |############|                   
+                    { / ‘.‘/     |     |  /           |############|                      
+                    {};   } .    |     | /            |############|                   
+                    {‘_*>.      |     |/             |############|                      
+            |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>"
+
+            sleep(2)
+
+
+            clear
+                
+            #LEVEL1
+            puts chosen_hero.display_stats()
+                printer("You have just entered '#{venue.name}'")
+                puts ""
+
+                selected_drink = do_step(venue.method(:display_menu), venue.drinks)
+
+
+            # stats adjusted accordingly
+            chosen_hero.imbibe(selected_drink)
+
+
+            puts chosen_hero.display_stats
+            sleep(4)
+
+                # chosen_hero.pub_challenge1()
+
+                selected_decision = do_step(venue.method(:display_obstacle), venue.obstacle.decisions)
+                #make the decision
+                chosen_hero.make_a_decision(selected_decision)
+
+                puts chosen_hero.display_stats()
+
+                sleep(4)
+                clear
+                
+                printer("You leave '#{venue.name}' and start walking along #{venue.street}")
+
+                puts ""
+
+                chosen_hero.recharge()
+                clear
+
+
+                puts chosen_hero.display_stats()
+                printer("You continue along #{venue.street} and head towards the next pub '#{venue.name}'")
+
+            end
         else 
             puts "unrecognized request"
         end
 
 end 
 
-clear
-banner("CHOOSE YOUR HERO!!")
+# prompt = TTY::Prompt.new
 
-puts"    
-    1. Kev
-    2. Douggie
-    3. Robbo
-    4. Bazza "
-    
-answer = gets.chomp
-
-chosen_hero = ""
-
-case answer
-
-when "1"
-      chosen_hero = kev
-when "2"
-    chosen_hero = douggie
-when "3"
-    chosen_hero = robbo
-when "4"
-    chosen_hero = bazza
-else
-    puts "unrecognized number"    
- 
-end 
-
-clear
-
-printer ("Bloody good choice! You've chosen #{chosen_hero.name}!!!")
-puts ""
-puts ""
-puts chosen_hero.display_stats
-
-sleep(2)
-
-printer "Let's get crawling!!!!"
-
-sleep(1)
-
-list_of_pubs.each do |venue|
-# crawlerman
-
-clear
-
-    puts "             
-                      /                             /
-                     /_____________________________/ |                             
-         ,****.      |                            |  |
-        {      }     |    #{venue.name}                     
-        .     ,*     |     ________________       |  | 
-         ‘} }’       |     |              |############|               
-         ./ }        |     |              |############|             
-       /’ .} ‘       |     |              |############|   
-       }! }   ).     |     |              |############|                 
-       {..}  /-_.}   |     |              |######## () |                  
-         {   /,      |     |     . . . . .|############|              
-        / /’>  *.    |     |   /          |############|                   
-        { / ‘.‘/     |     |  /           |############|                      
-        {};   } .    |     | /            |############|                   
-         {‘_*>.      |     |/             |############|                      
- |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>"
-
-sleep(2)
-
-
-clear
-    
-#LEVEL1
-puts chosen_hero.display_stats()
-    printer("You have just entered '#{venue.name}'")
-    puts ""
-
-    selected_drink = do_step(venue.method(:display_menu), venue.drinks)
-
-
-# stats adjusted accordingly
-chosen_hero.imbibe(selected_drink)
-
-
-puts chosen_hero.display_stats
-   sleep(4)
-
-    # chosen_hero.pub_challenge1()
-
-    selected_decision = do_step(venue.method(:display_obstacle), venue.obstacle.decisions)
-#make the decision
-    chosen_hero.make_a_decision(selected_decision)
-
-    puts chosen_hero.display_stats()
-
-
-    sleep(4)
-    clear
-    
-    printer("You leave '#{venue.name}' and start walking along #{venue.street}")
-
-    puts ""
-
-    chosen_hero.recharge()
-    clear
-
-
-    puts chosen_hero.display_stats()
-    printer("You continue along #{venue.street} and head towards the next pub '#{venue.name}'")
-
-end
