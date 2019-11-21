@@ -1,4 +1,4 @@
-system "clear"
+
 
 # List of ruby gems
 require 'tty-prompt'
@@ -98,7 +98,7 @@ loop do
             INCREASE HEALTH ALONG THE WAY:
             Alcohol – Pints, schooners, pots, spirits, shots, Kebabs, Energy Drinks,Ciggies (decreases health, 
             increases swagger and clout)
-            GOOD LUCK!!!
+            GOOD LUCK!!!"
                
               
                                        
