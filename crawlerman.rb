@@ -1,5 +1,6 @@
+require './functions.rb'
 
-def crawlerman
+def crawlerman(venue_name)
 
 
   timer = 0
@@ -14,7 +15,7 @@ def crawlerman
              
         when 1 
           
-        system "clear"   
+        clear()  
   
         puts "          
              
@@ -35,7 +36,7 @@ def crawlerman
 
         when 2
 
-        system "clear"
+        clear()
       
         puts "
     
@@ -56,7 +57,7 @@ def crawlerman
     
         when 3
 
-        system "clear"
+        clear()
       
         puts "
     
@@ -77,7 +78,7 @@ def crawlerman
     
         when 4
 
-        system "clear"
+        clear()
       
         puts "
     
@@ -98,7 +99,7 @@ def crawlerman
 
         when 5 
 
-        system "clear"
+        clear()
          
         puts "
 
@@ -119,7 +120,7 @@ def crawlerman
 
         when 6
 
-        system "clear"
+        clear()
       
         puts "
 
@@ -140,7 +141,7 @@ def crawlerman
     
         when 7
 
-        system "clear"
+        clear()
       
         puts "
 
@@ -161,7 +162,7 @@ def crawlerman
     
         when 8
 
-        system "clear"
+        clear()
       
         puts "
 
@@ -182,7 +183,7 @@ def crawlerman
     
         when 9 
       
-        system "clear"   
+        clear()   
     
         puts "    
                                                          ________            
@@ -203,7 +204,7 @@ def crawlerman
   
         when 10
   
-        system "clear"
+        clear()
         
         puts "    
                                                 __________________                                  
@@ -224,7 +225,7 @@ def crawlerman
       
         when 11
   
-        system "clear"
+        clear()
         
         puts "     
                                       _________________________                               
@@ -245,7 +246,7 @@ def crawlerman
       
         when 12
   
-        system "clear"
+        clear()
         
         puts "     
                              __________________________
@@ -264,7 +265,34 @@ def crawlerman
         ‘_*>.              |     |            |     |/                  
        |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>"
             
+        
         when 13
+
+        system"clear"
+
+       puts "             
+                      /                             /
+                     /_____________________________/ |                             
+         ,****.      |                            |  |
+        {      }     |    #{venue_name}                     
+        .     ,*     |     ________________       |  | 
+         ‘} }’       |     |              |############|               
+         ./ }        |     |              |############|             
+       /’ .} ‘       |     |              |############|   
+       }! }   ).     |     |              |############|                 
+       {..}  /-_.}   |     |              |######## () |                  
+         {   /,      |     |     . . . . .|############|              
+        / /’>  *.    |     |   /          |############|                   
+        { / ‘.‘/     |     |  /           |############|                      
+        {};   } .    |     | /            |############|                   
+         {‘_*>.      |     |/             |############|                      
+   |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>"
+
+   sleep(2) 
+      
+      
+      
+      when 14
         
           break
 

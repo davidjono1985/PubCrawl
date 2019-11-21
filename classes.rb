@@ -34,6 +34,9 @@ class Hero
         puts "Belly Level: #{@belly}"
     end 
 
+    #adjust stats and initiate closing time if applicable
+    #inputs - the individual amounts to adjust
+    #outputs true if hero is ded 
     def stats_adjust(cash, health, swagger_clout, sure_footedness, bladder, belly)
             @cash = @cash + cash
             @health = @health + health
@@ -41,39 +44,46 @@ class Hero
             @sure_footedness = @sure_footedness + sure_footedness
             @bladder = @bladder + bladder
             @belly = @belly + belly
+            
+            return closing_time()
        
-
     end
 
+    # closing time assesses if any of the stats reach maximum and ends the game accordingly
+    # inputs none 
+    # outputs true if any stats reach the specified threshold
    def closing_time()
+    quit = false
+    
         if @cash <= 0
         printer "Awww man you've run out of dosh! Better get your mum to pick you up your nights over"
-            quit = true 
+        quit = true 
         elsif @health <= 0
             printer "Awww man you've run out of dosh! Better get your mum to pick you up your nights over"
-            
+            quit = true 
         elsif @swagger_clout <= 0
             printer "Awww man you're off your rocket - the police have been called "
-            
+            quit = true 
         elsif @sure_footedness <= 0
             printer "Awww man you're runk as! The bouncers aren't letting you in no more! "
-            
+            quit = true 
         elsif @bladder >= 100
             printer "you dun wet yourself - go home and think about what you've done"
-            
+            quit = true 
         elsif @belly >= 100
             printer "you dun thrown up all over yerself - go home and change! "
-            
+            quit = true 
         else 
             puts "" 
         end 
+        return quit
     end 
    
     def recharge
         puts "Would you like to eat/drnk/smoke on your walk?"
     
          2.times do
-            closing_time
+          
            puts" 
            
             1. kebab with the lot
@@ -102,10 +112,11 @@ class Hero
     
     end
     
+     #adjusts the hero's stats based on the chosen drink
     def imbibe(drink)
-        #needs to adjust the hero's stats based on the chosen drink
+       
         stats_adjust(drink.cost, drink.health, drink.swagger_clout, drink.sure_footedness, drink.bladder, drink.belly )
-        closing_time
+        
     end
     
     ###
@@ -116,7 +127,7 @@ class Hero
     def make_a_decision(decision)
         #needs to adjust the hero's stats based on the chosen drink
         stats_adjust(decision.cost, decision.health, decision.swagger_clout, decision.sure_footedness, decision.bladder, decision.belly )
-        closing_time
+        
     end
 
 
@@ -174,7 +185,7 @@ class Drink
         end
         
        def to_string()
-            return "#{@name} $#{@cost}"
+            return "#{@name} $#{@cost.abs}"
 
        end 
     

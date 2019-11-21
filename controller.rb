@@ -48,7 +48,7 @@ list_of_obstacles = get_obstacles()
    
 
     #add venue to list of pubs
-    venue = Venue.new(pubs.shuffle.first,streets.shuffle.first, drinks, obstacle)
+    venue = Venue.new(pubs.shuffle!.slice(0),streets.shuffle!.slice(0), drinks, obstacle)
     list_of_pubs.push venue
 
 
@@ -57,16 +57,15 @@ list_of_obstacles = get_obstacles()
 end 
 
 
-kev = Hero.new("Kev","340","90","90")
-douggie = Hero.new("Douggie","250","70","80") 
-robbo = Hero.new("Robbo","220","100","60")
-bazza = Hero.new("Bazza","120","50","50")
+
 
 intro_banner()
 
-quit = false 
+ 
+
 loop do
-                
+         
+
         puts"
                     1. Rules          
                     2. View Hero's    
@@ -85,10 +84,10 @@ loop do
             puts "
             THE RULES ARE SIMPLE!".colorize(:red)
             puts"
-            Make it through 6 pubs without dying, blacking out or getting arrested.  
+            Make it through 5 pubs without dying, blacking out or getting arrested.  
             Start by choosing one of four “heroes” - all have different starting stats.  
-            The hero’s stats are affected by different drinks, different challenges and different obstacles.
-            Each Pub is a new level -  and drinks, challenges and obstacles get harder as the game progresses.
+            The hero’s stats are affected by different drinks, and different obstacles.
+            Each Pub is a new level -  and the drinks and obstacles get harder as the game progresses.
             WATCH YOUR STATS! 
             Health – get to zero you die
             Swagger_clout – get to zero you get arrested
@@ -99,10 +98,8 @@ loop do
             INCREASE HEALTH ALONG THE WAY:
             Alcohol – Pints, schooners, pots, spirits, shots, Kebabs, Energy Drinks,Ciggies (decreases health, 
             increases swagger and clout)
-            DECREASE HEALTH ALONG THE WAY: Vomit Blackout Bar Fight
-            OTHER:Toilet – empty bladder or belly
-            Bartender – if swagger or sure footedness too low you can’t drink
-            Bouncer – if swagger or sure footedness too low you denied entry"
+            GOOD LUCK!!!
+               
               
                                        
         when "2"
@@ -121,14 +118,18 @@ loop do
    
             
 
-            
+            #selected play starts here
         when "3" 
+
+            kev = Hero.new("Kev","340","90","90")
+            douggie = Hero.new("Douggie","250","70","80") 
+            robbo = Hero.new("Robbo","220","100","60")
+            bazza = Hero.new("Bazza","120","50","50")
+            
             clear
             banner("CHOOSE YOUR HERO!!")
                         
-            # prompt.select("Which of our local hero's do you choose?", %w(Kev Douggie Robbo Bazza))
-
-            printer "Now choose Your Hero!!!\n\n 1. Kev"
+            printer "Now choose your Local Hero!!!\n\n 1. Kev"
                 puts""
                 puts "#{kev.display_stats}"
             printer "2. Dougie"    
@@ -178,71 +179,65 @@ loop do
 
             sleep(1)
 
+            # loop of pubs
             list_of_pubs.each do |venue|
-            crawlerman
+                crawlerman(venue.name)
 
-            clear
-
-                puts "             
-                               /                             /
-                              /_____________________________/ |                             
-                  ,****.      |                            |  |
-                 {      }     |    #{venue.name}                     
-                 .     ,*     |     ________________       |  | 
-                  ‘} }’       |     |              |############|               
-                  ./ }        |     |              |############|             
-                /’ .} ‘       |     |              |############|   
-                }! }   ).     |     |              |############|                 
-                {..}  /-_.}   |     |              |######## () |                  
-                  {   /,      |     |     . . . . .|############|              
-                 / /’>  *.    |     |   /          |############|                   
-                 { / ‘.‘/     |     |  /           |############|                      
-                 {};   } .    |     | /            |############|                   
-                  {‘_*>.      |     |/             |############|                      
-            |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>| |>"
-
-            sleep(2)
+                clear
+                    
+                #LEVEL1
+                puts chosen_hero.display_stats()
+                    printer ("You have just entered '#{venue.name}'")
+                    puts ""
+                    printer "What would you like to drink?"
+                    puts""
+                    selected_drink = do_step(venue.method(:display_menu), venue.drinks)
 
 
-            clear
-                
-            #LEVEL1
-            puts chosen_hero.display_stats()
-                printer ("You have just entered '#{venue.name}'")
+                # stats adjusted accordingly
+                chosen_hero.imbibe(selected_drink)
+                last_drinks = chosen_hero.closing_time()
+                    if last_drinks == true
+                        break
+                    end
+                clear 
+
+                puts chosen_hero.display_stats
+                sleep(2)
+                                    
+                printer ("You leave '#{venue.name}' and start walking along #{venue.street}")
+
                 puts ""
-                printer "What would you like to drink?"
-                puts""
-                selected_drink = do_step(venue.method(:display_menu), venue.drinks)
-
-
-            # stats adjusted accordingly
-            chosen_hero.imbibe(selected_drink)
-
-            clear 
-
-            puts chosen_hero.display_stats
-            sleep(2)
-                                  
-            printer ("You leave '#{venue.name}' and start walking along #{venue.street}")
-
-            puts ""
-        
-            puts chosen_hero.display_stats        
-            chosen_hero.recharge()
-            puts chosen_hero.display_stats
             
-            clear
-            
-            selected_obstacle_decision = do_step(venue.method(:display_obstacle), venue.obstacle.decisions)
-            #make the decision
-            chosen_hero.make_a_decision(selected_obstacle_decision)
+                chosen_hero.recharge()
 
-            puts chosen_hero.display_stats()
+                last_drinks = chosen_hero.closing_time()
+                if last_drinks == true
+                    break
+                end
 
-               
-            puts ("You continue along #{venue.street} and head towards the next pub")
+                puts chosen_hero.display_stats
+                
+                clear
+                
+                selected_obstacle_decision = do_step(venue.method(:display_obstacle), venue.obstacle.decisions)
+                #make the decision
+                chosen_hero.make_a_decision(selected_obstacle_decision)
 
-            end
+                last_drinks = chosen_hero.closing_time()
+                if last_drinks == true
+                    break
+                end
+
+                puts chosen_hero.display_stats()
+
+                
+                puts ("You continue along #{venue.street} and head towards the next pub")
+
+            end # pubs loop
+
+            puts "Game over big dawg"
+            puts chosen_hero.display_stats
         else 
             puts "unrecognized request"
         end
