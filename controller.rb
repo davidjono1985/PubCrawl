@@ -64,7 +64,8 @@ bazza = Hero.new("Bazza","120","50","50")
 
 intro_banner()
 
-5.times do
+quit = false 
+loop do
                 
         puts"
                     1. Rules          
@@ -220,11 +221,8 @@ intro_banner()
             clear 
 
             puts chosen_hero.display_stats
-            sleep(4)
-
-            sleep(4)
-                
-              
+            sleep(2)
+                                  
             printer ("You leave '#{venue.name}' and start walking along #{venue.street}")
 
             puts ""
@@ -234,7 +232,7 @@ intro_banner()
             puts chosen_hero.display_stats
             
             clear
-                
+            
             selected_obstacle_decision = do_step(venue.method(:display_obstacle), venue.obstacle.decisions)
             #make the decision
             chosen_hero.make_a_decision(selected_obstacle_decision)

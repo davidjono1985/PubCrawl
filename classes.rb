@@ -45,11 +45,35 @@ class Hero
 
     end
 
-   def recharge
+   def closing_time()
+        if @cash <= 0
+        printer "Awww man you've run out of dosh! Better get your mum to pick you up your nights over"
+            quit = true 
+        elsif @health <= 0
+            printer "Awww man you've run out of dosh! Better get your mum to pick you up your nights over"
+            
+        elsif @swagger_clout <= 0
+            printer "Awww man you're off your rocket - the police have been called "
+            
+        elsif @sure_footedness <= 0
+            printer "Awww man you're runk as! The bouncers aren't letting you in no more! "
+            
+        elsif @bladder >= 100
+            printer "you dun wet yourself - go home and think about what you've done"
+            
+        elsif @belly >= 100
+            printer "you dun thrown up all over yerself - go home and change! "
+            
+        else 
+            puts "" 
+        end 
+    end 
+   
+    def recharge
         puts "Would you like to eat/drnk/smoke on your walk?"
     
          2.times do
-            
+            closing_time
            puts" 
            
             1. kebab with the lot
@@ -61,13 +85,13 @@ class Hero
             
             case answer
             when "1"
-            stats_adjust(1, 1, 1, 1, 1, 1)
+            stats_adjust(-7, 5, 1, 0, 0, 5)
             puts "anything else?"
             when "2"
-            stats_adjust(1, 1, 1, 1, 1, 1)
+            stats_adjust(-5, 2, 2, 3, 3, 1)
             puts "anything else?"
             when "3"
-            stats_adjust(1, 1, 1, 1, 1, 1)
+            stats_adjust(-2, -3, 6, 0, 0, 0)
             puts "anything else?"
             when "4"
             break
@@ -81,7 +105,7 @@ class Hero
     def imbibe(drink)
         #needs to adjust the hero's stats based on the chosen drink
         stats_adjust(drink.cost, drink.health, drink.swagger_clout, drink.sure_footedness, drink.bladder, drink.belly )
-
+        closing_time
     end
     
     ###
@@ -92,7 +116,7 @@ class Hero
     def make_a_decision(decision)
         #needs to adjust the hero's stats based on the chosen drink
         stats_adjust(decision.cost, decision.health, decision.swagger_clout, decision.sure_footedness, decision.bladder, decision.belly )
-
+        closing_time
     end
 
 

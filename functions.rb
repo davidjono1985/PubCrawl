@@ -23,89 +23,89 @@ def get_drinks
     {
         option1: {
           text: "Pint of Lager",
-          result: ["10", 20, -20, +10, +5, -5]
+          result: [-10, -2, 4, -4, 3, 1]
         }, 
         option2: {
         text: "Sensible glass of House Wine",
-        result: ["10", 20, -20, +10, +5, -5]
+        result: [-6, -2, 2, -4, 2, -0]
     },
         option3: {
         text: "Spirit and Mixer Of Choice",
-        result: ["10", 20, -20, +10, +5, -5]
+        result: [-7, -2, 2, -4, 2, 0]
     }, 
         option4: {
         text: "Jager bomb!",
-        result: ["10", 20, -20, +10, +5, -5]
+        result: [-9, -2, 3, -4, 2, 0]
     },
     },  {   
             option1: {
             text: "Horn of Mead",
-            result: ["10", 20, -20, +10, +5, -5]
+            result: [-12, -2, 4, -5, 4, 1]
         }, 
             option2: {
             text: "Snifter of Port",
-            result: ["10", 20, -20, +10, +5, -5]
+            result: [-4, -2, 2, -5, 4, 0]
         },
             option3: {
             text: "VCR – Vodka, Coke and Raspberry",
-            result: ["10", 20, -20, +10, +5, -5]
+            result: [-5, -2, 2, -5, 3, 0]
         }, 
             option4: {
             text: "Flaming Sambuca shot",
-            result: ["10", 20, -20, +10, +5, -5]
+            result: [-10, -3, 3, -5, 2, 0]
         }
     },  {
             option1: {
             text: "Flagon of Ale",
-            result: ["10", 20, -20, +10, +5, -5]
+            result: [-10, -2, 4, -6, 3, 1]
         }, 
             option2: {
             text: "Carafe of Wine",
-            result: ["10", 20, -20, +10, +5, -5]
+            result: [-12, -2, 2, -6, 4, 1]
             
         },
             option3: {
             text: "Smirny Double Black",
-            result: ["10", 20, -20, +10, +5, -5]
+            result: [-8, -2, 2, -6, 3, 0]
         }, 
             option4: {    
             text: "Shot of straight whisky like a bad-ass American cowboy",
-            result: ["10", 20, -20, +10, +5, -5]
+            result: [-6, -1, 4, -6, 2, 0]
         }
     },  {
             option1: {
             text: "Pitcher of Warm beer",
-            result: ["10", 20, -20, +10, +5, -5]
+            result: [-12, -3, 4, -7, 4, 2]
         }, 
             option2: {
             text: "Champers! OOh lovely bubbly!",
-            result: ["10", 20, -20, +10, +5, -5]
+            result: [-7, -2, 2, -7, 3, 0]
         },
             option3: {
             text: "I think it’s rum?",
-            result: ["10", 20, -20, +10, +5, -5]
+            result: [-5, -4, 4, -7, 3, 0]
         }, 
             option4: {
             text: "Shot of Absinthe (the real stuff that makes you hallucinate)",
-            result: ["10", 20, -20, +10, +5, -5]
+            result: [-12, -3, 4, -7, 2, 0]
         }
     },  {
             option1: {
             text: "The dregs from the drip-tray’s served in a chilled Stein",
-            result: ["10", 20, -20, +10, +5, -5]
+            result: [-2, -4, 5, -8, 3, 2]
         }, 
             option2: {
             text: "Swig straight from the Goon Sack (Fruity Lexia makes you sexier)",
-            result: ["10", 20, -20, +10, +5, -5]
+            result: [-5, -2, 4, -8, 3, 2]
         },
             option3: {
             text: "Long Island Ice-Tea (this is not real tea – remember what happened last time at your aunties’ birthday party!)",
-            result: ["10", 20, -20, +10, +5, -5]
+            result: [-10, -4, 3, -8, 3, 2]
         }, 
             option4: {
                 text: "Tequila suicide – snort the salt, down the shot and squeeze the lemon in your eye 
                 - TEQUILLA! Da da da da daaa da da da",
-                result:["10", 20, -20, +10, +5, -5]
+                result:[-6, -6, 6, -8, 2, 0]
             }
     }
 ]
@@ -122,38 +122,38 @@ def get_obstacles
         question: "On the way to the next pub you walk past a homeless busker playing spoons to the beat of Thunderstruck.  Do you:",
         option1: {
             text: "Walk past and ignore him",
-            result: ["0", 20, -20, +10, +5, -5]
+            result: [0, 0, -5, 0, 0, 0]
         }, 
         option2: {
             text: "Start clapping on the offbeat and jam out with him",
-            result: ["0", 20, -20, +10, +5, -5]
+            result: [0, 0, 8, 0, 0, 0]
         },
         option3: {
             text: "Throw money in his torn-up buskers hat",
-            result: ["5", 20, -20, +10, +5, -5]
+            result: [-5, 0, 5, 0, 0, 0]
         }, 
         option4: {
             text: "Buy him a sandwich from the 7-11",
-            result: ["5", 20, -20, +10, +5, -5]
+            result: [-5, 0, 5, 0, 0, 0]
         },
     }, {
         question: "A gaggle of hen’s walk past – they are on a pub crawl of their own. The maid of honour stops you in the 
         middle of the street and asks you to take a photo of her tribe for her Instagram story.  Do you:",
         option1: {
             text: "Accept",
-            result: ["10", 20, -20, +10, +5, -5]
+            result: [0, 10, 10, 10, 0, 0]
         }, 
         option2: {
             text: "Decline",
-            result: ["10", 20, -20, +10, +5, -5]
+            result: [0, 0, 0, 0, 0, 0]
         },
         option3: {
             text: "Say yes, but take a video instead cuz you're a funny sob",
-            result: ["10", 20, -20, +10, +5, -5]
+            result: [0, 0, 7, 5, 0, 0]
         }, 
         option4: {
             text: "Steal her camera, run off laughing and throw it in the local river",
-            result: ["10", 20, -20, +10, +5, -5]
+            result: [0, 0, 7, 5, 0, 0]
         },
     }, {
         question: "You encounter a group of sun-burnt tradies who are taking it in turns to regale each other with quotes 
@@ -161,19 +161,19 @@ def get_obstacles
         Suddenly one of them looks at you and yells out “DENTAL PLAN!” to which you reply:?",
         option1: {
             text: "Peter Griffin – number 1 dad",
-            result: ["10", 20, -20, +10, +5, -5]
+            result: [0, 0, 0, 0, 0, 0]
         }, 
         option2: {
             text: "Bender is hilarious - is Futurama still running?",
-            result: ["10", 20, -20, +10, +5, -5]
+            result: [0, 0, 0, 0, 0, 0]
         },
         option3: {
             text: "Lisa needs braces",
-            result: ["10", 20, -20, +10, +5, -5]
+            result: [10, 10, 30, 10, -5, -5]
         }, 
         option4: {
             text: "Shuttup Cartman",
-            result: ["10", 20, -20, +10, +5, -5]
+            result: [0, 0, 0, 0, 0, 0]
         },
     }, {
         question: "You saunter past a cohort of liberal student hipsters - they are standing outside Hungry Jacks protesting the lack 
@@ -181,19 +181,19 @@ def get_obstacles
         Do you:",
         option1: {
             text: "Ignore them",
-            result: ["10", 20, -20, +10, +5, -5]
+            result: [0, 0, 0, 0, 0, 0]
         }, 
         option2: {
             text: "Walk past shaking your head",
-            result: ["10", 20, -20, +10, +5, -5]
+            result: [0, 10, 10, 0, 0, 0]
         },
         option3: {
             text: "Enthusiastically join their protest",
-            result: ["10", 20, -20, +10, +5, -5]
+            result: [0, 20, 20, 10, 0, 0]
         }, 
         option4: {
             text: "Spend 15 minutes explaining to them they don’t know what real issues are. ",
-            result: ["10", 20, -20, +10, +5, -5]
+            result: [0, 5, 5, 10, 0, 0]
         }
     },
 ]
