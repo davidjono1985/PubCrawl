@@ -48,7 +48,7 @@ list_of_obstacles = get_obstacles()
    
 
     #add venue to list of pubs
-    venue = Venue.new(pubs.shuffle!.slice(0),streets.shuffle!.slice(0), drinks, obstacle)
+    venue = Venue.new(pubs.shuffle!.slice!(0),streets.shuffle!.slice!(0), drinks, obstacle)
     list_of_pubs.push venue
 
 
