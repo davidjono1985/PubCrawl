@@ -20,8 +20,6 @@ list_of_drinks = get_drinks()
 list_of_obstacles = get_obstacles()
 
 
-
-
 (0..4).each do |index|
 
     drink_set = list_of_drinks[index]
